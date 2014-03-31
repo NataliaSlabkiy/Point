@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>>IntelliJ IDEA Servlet Example</title>
+    <title>WebFormServlet</title>
+    <link rel="stylesheet" type="text/css" href="dop/base.css"/>
 </head>
 <body>
-<h2>Hello World Using POST</h2>
+<header>
+    <div class="info">
+        Variant #10030<br>
+        students from #2100<br>
+        Natalia & Ekaterina<br>
+    </div>
+</header>
+<div class="form">
+    <form action="/Point/controller" method="POST">
+        <div id="R" class="item">
+            <label>R:</label>
 
-<form action="/Point/controller" method="post">
-    Type your name:&nbsp;<input type="text" name="userName"
-                                width="100"/>&nbsp;<input type="submit" value="Say Hello"/>
-</form>
+            <div id="R_input" class="input">
+                <input type="text" name="R"/>
+            </div>
+            <br/>
+        </div>
+        <div id="X" class="item">
+            <label>X:</label>
 
+            <div id="X_input" class="input">
+                <select name="X">
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option selected="selected" value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <br/>
+        </div>
+        <div id="Y" class="item">
+            <label>Y:</label>
 
+            <div id="Y_input" class="input">
+                <input type="radio" name="Y" value="-5"> -5<br>
+                <input type="radio" name="Y" value="-4"> -4<br>
+                <input type="radio" name="Y" value="-3"> -3<br>
+                <input type="radio" name="Y" value="-2"> -2<br>
+                <input type="radio" name="Y" value="-1"> -1<br>
+                <input type="radio" name="Y" value="0"> 0<br>
+                <input type="radio" name="Y" value="1"> 1<br>
+                <input type="radio" name="Y" value="2"> 2<br>
+                <input type="radio" name="Y" value="3"> 3<br>
+            </div>
+            <br/>
+        </div>
+        <div id="submit" class="item">
+            <input type="submit">
+        </div>
+    </form>
+</div>
+<div id="area">
+</div>
 </body>
 </html>

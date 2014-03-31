@@ -1,0 +1,61 @@
+header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #E6E6FA;
+    margin-bottom: 10px;
+    font-family: fantasy;
+    font-size: 25px;
+    color: #191970;
+}
+.info{
+    width: 500px;
+    text-align: center;
+}
+.form{
+    float: left;
+    width: 150px;
+    height: 315px;
+    border: 5px double #E6E6FA;
+    padding: 10px;
+    color: #2F4F4F;
+}
+.item{
+    border-bottom: 2px solid #E6E6FA;
+    padding: 3px;
+}
+.input{
+    width: 100px;
+    float: right;
+}
+.input * {
+    width: 70px;
+}
+option[selected]{
+    color: red;
+}
+.form:hover{
+    background:  #F8F8FF;
+}
+#R{
+    height: 30px;
+}
+#X{
+    height: 30px;
+}
+#Y{
+    height: 200px;
+}
+#Y_input{
+    height: 190px;
+}
+#area{
+    float: left;
+    background: url("area.jpg");
+    width:206px;
+    height: 206px;
+    margin: 15px;
+}
+table, th, td {
+    border: 2px solid #E6E6FA;
+    border-collapse: collapse;
+}

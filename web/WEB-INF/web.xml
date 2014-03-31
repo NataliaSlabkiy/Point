@@ -9,8 +9,30 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>ControllerServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>WebForm</servlet-name>
+        <servlet-class>WebFormServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AreaCheck</servlet-name>
+        <servlet-class>AreaCheckServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AreaCheck</servlet-name>
+        <url-pattern>/area</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>WebForm</servlet-name>
+        <url-pattern>/web</url-pattern>
+    </servlet-mapping>
+
 </web-app>
