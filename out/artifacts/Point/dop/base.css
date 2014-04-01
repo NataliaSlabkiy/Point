@@ -14,7 +14,7 @@ header {
 .form{
     float: left;
     width: 150px;
-    height: 315px;
+    height: 370px;
     border: 5px double #E6E6FA;
     padding: 10px;
     color: #2F4F4F;
@@ -25,7 +25,6 @@ header {
 }
 .input{
     width: 100px;
-    float: right;
 }
 .input * {
     width: 70px;
@@ -37,16 +36,17 @@ option[selected]{
     background:  #F8F8FF;
 }
 #R{
-    height: 30px;
+    height: 40px;
 }
 #X{
-    height: 30px;
+    height: 40px;
 }
 #Y{
-    height: 200px;
+    height: 225px;
 }
 #Y_input{
     height: 190px;
+    margin-right: 25px;
 }
 #area{
     float: left;
@@ -58,4 +58,7 @@ option[selected]{
 table, th, td {
     border: 2px solid #E6E6FA;
     border-collapse: collapse;
+}
+.err{
+    color: red;
 }

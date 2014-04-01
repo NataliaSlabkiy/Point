@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WebFormServlet</title>
+    <title>WebForm</title>
     <link rel="stylesheet" type="text/css" href="dop/base.css"/>
+    <link rel="stylesheet" type="text/JavaScript" href="dop/check.js"/>
 </head>
 <body>
 <header>
@@ -13,19 +14,17 @@
     </div>
 </header>
 <div class="form">
-    <form action="/Point/controller" method="POST">
+    <form action="/Point/controller" method="POST" name="form" onsubmit="return check()">
         <div id="R" class="item">
-            <label>R:</label>
-
-            <div id="R_input" class="input">
-                <input type="text" name="R"/>
+            <div class="input">
+                <label>R: </label><input type="text" name="R"/>
             </div>
-            <br/>
+            <label name="errR" id="errorR" class="err"></label>
         </div>
-        <div id="X" class="item">
-            <label>X:</label>
 
-            <div id="X_input" class="input">
+        <div id="X" class="item">
+            <div class="input">
+                <label>X: </label>
                 <select name="X">
                     <option value="-4">-4</option>
                     <option value="-3">-3</option>
@@ -38,11 +37,11 @@
                     <option value="4">4</option>
                 </select>
             </div>
-            <br/>
+            <label name="errorX" class="err"></label>
         </div>
+
         <div id="Y" class="item">
             <label>Y:</label>
-
             <div id="Y_input" class="input">
                 <input type="radio" name="Y" value="-5"> -5<br>
                 <input type="radio" name="Y" value="-4"> -4<br>
@@ -54,9 +53,10 @@
                 <input type="radio" name="Y" value="2"> 2<br>
                 <input type="radio" name="Y" value="3"> 3<br>
             </div>
-            <br/>
+            <label name="errorY" class="err"></label>
         </div>
-        <div id="submit" class="item">
+
+        <div class="item">
             <input type="submit">
         </div>
     </form>

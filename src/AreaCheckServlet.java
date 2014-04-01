@@ -5,14 +5,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.Math;
 import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.Formatter;
 
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int rad = 4, xi = 1, yi = 1;
-        String res; // Исправить математику для картинки
+        int rad, xi, yi;
+        String res;
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+
+        rad = Integer.parseInt(request.getParameter("R"));
+        xi = Integer.parseInt(request.getParameter("X"));
+        yi = Integer.parseInt(request.getParameter("Y"));
+
         if (yi == 0 && xi > 0 && xi < rad/2){
             res = "OX";
         } else if (xi == 0 && yi > 0 && yi < rad/2){
@@ -27,8 +32,6 @@ public class AreaCheckServlet extends HttpServlet {
             res = "None";
         }
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         out.println("<html>"+
                         "<head>"+
                             "<title>Results</title>"+
@@ -41,12 +44,11 @@ public class AreaCheckServlet extends HttpServlet {
                                 "<tr><td>Y</td><td>" + yi + "</td></tr>"+
                                 "<tr><td>Result</td><td>" + res + "</td></tr>"+
                             "</table>"+
-                            "<label><a href=\"/Point/web\">BAAACK</a></label>"+
+                            "<label><a href=\"/Point/web\">Return back</a></label>"+
                         "</body>"+
                     "</html>"
         );
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
