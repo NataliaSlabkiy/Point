@@ -61,4 +61,9 @@ table, th, td {
 }
 .err{
     color: red;
+    display : none;
+}
+.notValid{
+    outline-color: red;
+    border-color: red;
 }

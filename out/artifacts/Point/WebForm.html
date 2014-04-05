@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>WebForm</title>
     <link rel="stylesheet" type="text/css" href="dop/base.css"/>
     <link rel="stylesheet" type="text/JavaScript" href="dop/check.js"/>
+    <script type="text/javascript">
+        function validRad(tempR) {
+            var resuR = 0;
+            if (tempR == "") {
+                resuR = 1;
+            }
+            if (isNaN(tempR)) {
+                resuR = 1;
+            }
+            if (tempR > 5 || tempR < 0) {
+                resuR = 1;
+            }
+            if (resuR == 1) {
+                document.getElementById('errorR').style.display = "inline";
+                document.getElementById('btn').setAttribute('disabled',true);
+            } else {
+                document.getElementById('errorR').style.display = "none";
+                document.getElementById('btn').removeAttribute('disabled');
+            }
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -12,16 +34,16 @@
         students from #2100<br>
         Natalia & Ekaterina<br>
     </div>
+
 </header>
 <div class="form">
-    <form action="/Point/controller" method="POST" name="form" onsubmit="return check()">
+    <form action="/Point/controller" method="POST" id="form">
         <div id="R" class="item">
             <div class="input">
-                <label>R: </label><input type="text" name="R"/>
+                <label>R: </label><input type="text" name="R" id="rad" onchange="validRad(this.value)"/>
+                <span id="errorR" class="err">incorrectly</span>
             </div>
-            <label name="errR" id="errorR" class="err"></label>
         </div>
-
         <div id="X" class="item">
             <div class="input">
                 <label>X: </label>
@@ -37,27 +59,26 @@
                     <option value="4">4</option>
                 </select>
             </div>
-            <label name="errorX" class="err"></label>
         </div>
 
         <div id="Y" class="item">
             <label>Y:</label>
+
             <div id="Y_input" class="input">
                 <input type="radio" name="Y" value="-5"> -5<br>
                 <input type="radio" name="Y" value="-4"> -4<br>
                 <input type="radio" name="Y" value="-3"> -3<br>
                 <input type="radio" name="Y" value="-2"> -2<br>
                 <input type="radio" name="Y" value="-1"> -1<br>
-                <input type="radio" name="Y" value="0"> 0<br>
+                <input type="radio" name="Y" value="0" checked="true"> 0<br>
                 <input type="radio" name="Y" value="1"> 1<br>
                 <input type="radio" name="Y" value="2"> 2<br>
                 <input type="radio" name="Y" value="3"> 3<br>
             </div>
-            <label name="errorY" class="err"></label>
         </div>
 
         <div class="item">
-            <input type="submit">
+            <input type="submit" id="btn" disabled>
         </div>
     </form>
 </div>
