@@ -1,5 +1,6 @@
 <%-- Created by IntelliJ IDEA. --%>
 <%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.*" %>
 <%@ page import="Data.ResultData" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -60,22 +61,24 @@
         </div>
     </form>
 </div>
-<canvas id="area">Canvas does not supported!</canvas>
+<canvas id="area">No canvas!</canvas>
 <div class="results">
     <%
-        ArrayList<ResultData> results = (ArrayList<ResultData>)request.getAttribute("result");
-       // if (results.isEmpty()) return;
-
-        for (int i = 0; i < results.size(); i++){
-            out.print("<div class=\"result\"><h3>Point ("
+        ServletContext sc = request.getServletContext();
+        String results = pageContext.getServletContext().getInitParameter("result");
+        out.print("<div>Point "
+                + results+
+                "</div>");
+       /* for (int i = 0; i < results.size(); i++){
+            out.print("<div>Point ( x = "
                     + results.get(i).getX() +
-                    "; " +
+                    ", y = " +
                     results.get(i).getY() +
-                    ") with R = " +
+                    ", R = ), " +
                     results.get(i).getR() +
                     "Area: " +
                     results.get(i).getArea()  +
-                    "!</h3></div>");}
+                    "!</div>");}*/
     %>
 </div>
 

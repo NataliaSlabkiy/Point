@@ -64,9 +64,13 @@
 <canvas id="area">No canvas!</canvas>
 <div class="results">
     <%
-        ArrayList<ResultData> results = (ArrayList<ResultData>);
-
-        for (int i = 0; i < results.size(); i++){
+        ServletContext sc = request.getServletContext();
+        sc.getAttribute("result");
+        String results = pageContext.getServletContext().getInitParameter("result");
+        out.print("<div>Point "
+                + results+
+                "</div>");
+       /* for (int i = 0; i < results.size(); i++){
             out.print("<div>Point ( x = "
                     + results.get(i).getX() +
                     ", y = " +

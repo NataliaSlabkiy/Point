@@ -44,7 +44,7 @@ public class AreaCheckServlet extends HttpServlet {
         resTemp.setY(yi);
         ControllerServlet.resu.add(resTemp);
         ServletContext context = getServletContext();
-        context.setAttribute("result",resTemp);
+        context.setAttribute("result","hello");
 
         out.println("<html>"+
                         "<head>"+
