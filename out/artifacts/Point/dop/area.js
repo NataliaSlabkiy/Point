@@ -3,29 +3,45 @@
  */
 var c, r, currentRad;
 
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
+}
+
 window.onload = function() {
     c = document.getElementById("area");
     r = document.getElementsByName("R");
-    r.value = 2;
-
-    redraw();
+    txtY = document.getElementById("Yy");
+    butn = document.getElementById('btn');
+    redraw(2);
 
     c.addEventListener("mousedown", function(evt) {
         var pos = getMousePos(c, evt);
-        var originalXPercent = Math.round(pos.x / c.width * 100);
-        var originalYPercent = Math.round(pos.y / c.height * 100);
-        var finalX = currentRad / 10 * (originalXPercent - 50) * 0.3;
-        var finalY = currentRad / 10 * (50 - originalYPercent) * 0.3;
-        finalY = Math.round(finalY * 10) / 10;
-        document.getElementsByName("Y").value = finalY;
-
-        var elements = document.getElementsByClassName('xbut');
-
-        alert("Actual X value is " + Math.round(finalX * 10) / 10 + "\nRounded to " + Math.round(finalX));
-        for (var i = 0; i < elements.length; i++)
-            if (elements[i].value == Math.round(finalX))
-                setPushed(elements[i]);
+        var xx=(pos.x-165)/(110/currentRad);
+        var yy=-(pos.y-165)/(110/currentRad);
+        document.getElementById("Yy").value = Math.round(yy);
+        document.getElementById("X_input").value = Math.round(xx);
     }, false);
+
+    for (var i = 0; i < r.length; ++ i) {
+        r[i].onchange = function(e){
+            redraw(e.target.value);
+        };
+    }
+
+    butn.onmouseover = function (e) {
+            var tempR = document.getElementById("Yy").value;
+            if (tempR == ""||isNaN(tempR)|| tempR > 3 || tempR < -3) {
+                document.getElementById('errorR').style.display = "inline";
+                alert("error");
+            } else {
+                document.getElementById('errorR').style.display = "none";
+            }
+        };
+
 };
 
 function drawGraph(){
@@ -44,9 +60,6 @@ function drawGraph(){
     ctx.beginPath();
     ctx.moveTo(c.width/2, c.height/2);
     ctx.lineTo(5*c.width/6, c.height/2);
-     /*ctx.lineTo(5*c.width/6, 5*c.height/6);
-    ctx.lineTo(c.width/2, 5*c.height/6);*/
-    //ctx.arc(c.width/2, c.height/2, c.width/6, 0, 0.5*Math.PI, false);
     ctx.quadraticCurveTo(5*c.width/6,5*c.height/6,c.width/2, 5*c.height/6);
     ctx.lineTo(c.width/2, c.height/2);
     ctx.closePath();
@@ -85,34 +98,28 @@ function drawGraph(){
     ctx.stroke();
 }
 
-function setRadius(value){
+function setRadius(radi){
     var ctx = c.getContext("2d");
 
     ctx.fillStyle = "#000000";
     ctx.font = "12pt Arial";
 
-    ctx.fillText(-value, c.width/6 - 10, c.height/2 - 10);
-    ctx.fillText(-value/2, c.width/3 - 10, c.height/2 - 10);
-    ctx.fillText(value/2, 2 * c.width/3 - 10, c.height/2 - 10);
-    ctx.fillText(value, 5 * c.width/6 - 10, c.height/2 - 10);
+    ctx.fillText(-radi, c.width/6 - 10, c.height/2 - 10);
+    ctx.fillText(-radi/2, c.width/3 - 10, c.height/2 - 10);
+    ctx.fillText(radi/2, 2 * c.width/3 - 10, c.height/2 - 10);
+    ctx.fillText(radi, 5 * c.width/6 - 10, c.height/2 - 10);
 
-    ctx.fillText(value, c.width/2 + 10, c.height/6 + 5);
-    ctx.fillText(value/2, c.width/2 + 10, c.height/3 + 5);
-    ctx.fillText(-value/2, c.width/2 + 10, 2 * c.height/3 + 5);
-    ctx.fillText(-value, c.width/2 + 10, 5 * c.height/6 + 5);
+    ctx.fillText(radi, c.width/2 + 10, c.height/6 + 5);
+    ctx.fillText(radi/2, c.width/2 + 10, c.height/3 + 5);
+    ctx.fillText(-radi/2, c.width/2 + 10, 2 * c.height/3 + 5);
+    ctx.fillText(-radi, c.width/2 + 10, 5 * c.height/6 + 5);
 }
 
-function redraw(){
-    currentRad = r.value;
+function redraw(currRad){
+    currentRad=currRad;
     drawGraph();
-    setRadius(currentRad);
+    setRadius(parseFloat(currRad));
 }
 
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-    };
-}
+
 

@@ -1,3 +1,6 @@
+import Data.ResultData;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -5,22 +8,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.Math;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int rad, xi, yi;
+        int xi, yi;
+        float rad;
         String res;
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
+        ResultData resTemp = new ResultData();
 
-        rad = Integer.parseInt(request.getParameter("R"));
+        rad = Float.parseFloat(request.getParameter("R"));
         xi = Integer.parseInt(request.getParameter("X"));
         yi = Integer.parseInt(request.getParameter("Y"));
 
-        if (yi == 0 && xi > -rad/2 && xi < rad){
+        if (yi == 0){
             res = "OX";
-        } else if (xi == 0 && yi > -rad && yi < rad){
+        } else if (xi == 0){
             res = "OY";
         } else if (xi  > 0 && xi < rad  && yi  > 0 && yi  < rad/2){
             res = "Rectangle";
@@ -31,6 +37,14 @@ public class AreaCheckServlet extends HttpServlet {
         } else {
             res = "None";
         }
+
+        resTemp.setArea(res);
+        resTemp.setR(rad);
+        resTemp.setX(xi);
+        resTemp.setY(yi);
+        ControllerServlet.resu.add(resTemp);
+        ServletContext context = getServletContext();
+        context.setAttribute("result",resTemp);
 
         out.println("<html>"+
                         "<head>"+
@@ -48,7 +62,11 @@ public class AreaCheckServlet extends HttpServlet {
                         "</body>"+
                     "</html>"
         );
+       /* request.setAttribute("result", resTemp);
+        RequestDispatcher rd = request.getRequestDispatcher("/Point");
+        rd.forward(request, response);*/
     }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
