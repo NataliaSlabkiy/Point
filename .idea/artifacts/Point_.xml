@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="Point ">
+    <output-path>$PROJECT_DIR$/out/artifacts/Point</output-path>
+    <root id="archive" name="Point .war">
+      <element id="artifact" artifact-name="Point" />
+    </root>
+  </artifact>
+</component>

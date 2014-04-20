@@ -18,11 +18,11 @@ public class AreaCheckServlet extends HttpServlet {
         xi = Integer.parseInt(request.getParameter("X"));
         yi = Integer.parseInt(request.getParameter("Y"));
 
-        if (yi == 0 && xi > 0 && xi < rad/2){
+        if (yi == 0 && xi > -rad/2 && xi < rad){
             res = "OX";
-        } else if (xi == 0 && yi > 0 && yi < rad/2){
+        } else if (xi == 0 && yi > -rad && yi < rad){
             res = "OY";
-        } else if (xi  > 0 && xi < rad  && yi  > 0 && yi  < rad){
+        } else if (xi  > 0 && xi < rad  && yi  > 0 && yi  < rad/2){
             res = "Rectangle";
         } else if(xi > 0 && yi < 0 && Math.sqrt(Math.pow(xi, 2) + Math.pow(yi, 2)) < rad){
             res = "Circle";
@@ -44,7 +44,7 @@ public class AreaCheckServlet extends HttpServlet {
                                 "<tr><td>Y</td><td>" + yi + "</td></tr>"+
                                 "<tr><td>Result</td><td>" + res + "</td></tr>"+
                             "</table>"+
-                            "<label><a href=\"/Point/web\">Return back</a></label>"+
+                            "<label><a href=\"/Point\">Return back</a></label>"+
                         "</body>"+
                     "</html>"
         );

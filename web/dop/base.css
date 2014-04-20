@@ -8,13 +8,13 @@ header {
     color: #191970;
 }
 .info{
-    width: 500px;
+    width: 400px;
     text-align: center;
 }
 .form{
     float: left;
     width: 150px;
-    height: 370px;
+    height: 300px;
     border: 5px double #E6E6FA;
     padding: 10px;
     color: #2F4F4F;
@@ -23,12 +23,7 @@ header {
     border-bottom: 2px solid #E6E6FA;
     padding: 3px;
 }
-.input{
-    width: 100px;
-}
-.input * {
-    width: 70px;
-}
+
 option[selected]{
     color: red;
 }
@@ -36,24 +31,37 @@ option[selected]{
     background:  #F8F8FF;
 }
 #R{
-    height: 40px;
+    height: 125px;
 }
 #X{
-    height: 40px;
+    height: 50px;
 }
 #Y{
-    height: 225px;
+    height: 70px;
 }
 #Y_input{
-    height: 190px;
-    margin-right: 25px;
+    height: 190px;   
+	margin-top: 5px;
+	margin-left:20px;	
+}
+#R_input{
+	margin-top:5px;
+	margin-left:20px;	
+}
+#X_input{
+	width: 100px;
+	margin-left:20px;
+}
+#btn{	
+	margin-left:20px;
+	margin-top:5px;
 }
 #area{
     float: left;
-    background: url("area.jpg");
-    width:206px;
-    height: 206px;
-    margin: 15px;
+    width:320px;
+    height: 320px;
+    margin-left: 10px;
+    border: 5px double #E6E6FA;
 }
 table, th, td {
     border: 2px solid #E6E6FA;
@@ -63,7 +71,12 @@ table, th, td {
     color: red;
     display : none;
 }
-.notValid{
-    outline-color: red;
-    border-color: red;
+.small_header{		
+    margin-bottom: 10px;
+    font-family: fantasy;
+    font-size: 17px;
+    color: #4169E1;
+}
+.input{
+	width: 100px;	
 }
