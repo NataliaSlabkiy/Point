@@ -80,3 +80,6 @@ table, th, td {
 .input{
 	width: 100px;	
 }
+.results{
+    margin-left: 10px;
+}

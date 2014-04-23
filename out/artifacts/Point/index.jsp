@@ -1,7 +1,7 @@
-<%-- Created by IntelliJ IDEA. --%>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.*" %>
 <%@ page import="Data.ResultData" %>
+
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html>
@@ -63,22 +63,19 @@
 </div>
 <canvas id="area">No canvas!</canvas>
 <div class="results">
+    <p class="small_header">Results</p>
     <%
-        ServletContext sc = request.getServletContext();
-        String results = pageContext.getServletContext().getInitParameter("result");
-        out.print("<div>Point "
-                + results+
-                "</div>");
-       /* for (int i = 0; i < results.size(); i++){
-            out.print("<div>Point ( x = "
-                    + results.get(i).getX() +
-                    ", y = " +
-                    results.get(i).getY() +
-                    ", R = ), " +
-                    results.get(i).getR() +
-                    "Area: " +
-                    results.get(i).getArea()  +
-                    "!</div>");}*/
+        ArrayList<ResultData> res = (ArrayList<ResultData>)application.getAttribute("result");
+        for (int i = 0; i < res.size(); i++){
+        out.print("<p>Point ( x = "
+                + res.get(i).getX() +
+                ", y = " +
+                res.get(i).getY() +
+                ", R = " +
+                res.get(i).getR() +
+                "), Area: " +
+                res.get(i).getArea() +
+                "</p>");}
     %>
 </div>
 

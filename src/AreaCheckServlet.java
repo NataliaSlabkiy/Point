@@ -1,5 +1,6 @@
 import Data.ResultData;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.Math;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Stack;
 import javax.servlet.RequestDispatcher;
 
+
 public class AreaCheckServlet extends HttpServlet {
+    public static ArrayList<ResultData> resu;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int xi, yi;
@@ -19,6 +24,7 @@ public class AreaCheckServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
         ResultData resTemp = new ResultData();
+        if (resu == null) resu = new ArrayList<ResultData>(10);
 
         rad = Float.parseFloat(request.getParameter("R"));
         xi = Integer.parseInt(request.getParameter("X"));
@@ -42,10 +48,9 @@ public class AreaCheckServlet extends HttpServlet {
         resTemp.setR(rad);
         resTemp.setX(xi);
         resTemp.setY(yi);
-        ControllerServlet.resu.add(resTemp);
+        resu.add(resTemp);
         ServletContext context = getServletContext();
-        context.setAttribute("result","hello");
-
+        context.setAttribute("result",resu);
         out.println("<html>"+
                         "<head>"+
                             "<title>Results</title>"+
@@ -62,9 +67,6 @@ public class AreaCheckServlet extends HttpServlet {
                         "</body>"+
                     "</html>"
         );
-       /* request.setAttribute("result", resTemp);
-        RequestDispatcher rd = request.getRequestDispatcher("/Point");
-        rd.forward(request, response);*/
     }
 
 

@@ -25,4 +25,8 @@
         <url-pattern>/area</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>ContextListener</listener-class>
+    </listener>
+
 </web-app>
