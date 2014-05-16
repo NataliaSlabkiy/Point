@@ -1,7 +1,6 @@
 import Data.ResultData;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +9,10 @@ import java.io.IOException;
 import java.lang.Math;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Stack;
-import javax.servlet.RequestDispatcher;
+
 
 
 public class AreaCheckServlet extends HttpServlet {
-    public static ArrayList<ResultData> resu;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int xi, yi;
@@ -24,11 +21,10 @@ public class AreaCheckServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
         ResultData resTemp = new ResultData();
-        if (resu == null) resu = new ArrayList<ResultData>(10);
-
-        rad = Float.parseFloat(request.getParameter("R"));
-        xi = Integer.parseInt(request.getParameter("X"));
-        yi = Integer.parseInt(request.getParameter("Y"));
+        try {
+            rad = Float.parseFloat(request.getParameter("R"));
+            xi = Integer.parseInt(request.getParameter("X"));
+            yi = Integer.parseInt(request.getParameter("Y"));
 
         if (yi == 0){
             res = "OX";
@@ -48,11 +44,11 @@ public class AreaCheckServlet extends HttpServlet {
         resTemp.setR(rad);
         resTemp.setX(xi);
         resTemp.setY(yi);
+        ArrayList<ResultData> resu = (ArrayList<ResultData>)getServletContext().getAttribute("result");
         resu.add(resTemp);
-        ServletContext context = getServletContext();
-        context.setAttribute("result",resu);
+        getServletContext().setAttribute("result",resu);
         out.println("<html>"+
-                        "<head>"+
+                        "<head><link rel=\"stylesheet\" type=\"text/css\" href=\"dop/base.css\"/>"+
                             "<title>Results</title>"+
                         "</head>"+
                         "<body>"+
@@ -67,6 +63,17 @@ public class AreaCheckServlet extends HttpServlet {
                         "</body>"+
                     "</html>"
         );
+        }catch (NumberFormatException e){
+            out.println("<html>"+
+                    "<head><link rel=\"stylesheet\" type=\"text/css\" href=\"dop/base.css\"/>"+
+                    "<title>Results</title>"+
+                    "</head>"+
+                    "<body>"+
+                    "<p>ERROR!</p>"+
+                    "<label><a href=\"/Point\">Return back</a></label>"+
+                    "</body>"+
+                    "</html>");
+        }
     }
 
 

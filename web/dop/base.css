@@ -9,7 +9,8 @@ header {
 }
 .info{
     width: 400px;
-    text-align: center;
+    text-align: left;
+    margin-left: 10px;
 }
 .form{
     float: left;
@@ -61,17 +62,20 @@ option[selected]{
     width:320px;
     height: 320px;
     margin-left: 10px;
+    margin-right: 10px;
     border: 5px double #E6E6FA;
+
 }
 table, th, td {
-    border: 2px solid #E6E6FA;
+    border: 5px double #E6E6FA;
     border-collapse: collapse;
+    text-align: center;
 }
 .err{
     color: red;
     display : none;
 }
-.small_header{		
+.small_header{
     margin-bottom: 10px;
     font-family: fantasy;
     font-size: 17px;
@@ -81,5 +85,6 @@ table, th, td {
 	width: 100px;	
 }
 .results{
-    margin-left: 10px;
+    margin-left: 20px;
+
 }

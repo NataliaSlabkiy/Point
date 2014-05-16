@@ -34,7 +34,7 @@ window.onload = function() {
 
     butn.onmouseover = function (e) {
             var tempR = document.getElementById("Yy").value;
-            if (tempR == ""||isNaN(tempR)|| tempR > 3 || tempR < -3) {
+            if (tempR == ""||isNaN(tempR)|| tempR > 3 || tempR < -3 || parseInt(tempR) != tempR) {
                 document.getElementById('errorR').style.display = "inline";
                 alert("error");
             } else {

@@ -1,5 +1,4 @@
 <%@ page import="java.util.*" %>
-<%@ page import="javax.servlet.*" %>
 <%@ page import="Data.ResultData" %>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,8 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>WebForm</title>
     <link rel="stylesheet" type="text/css" href="dop/base.css"/>
-    <script type="text/javascript" src="dop/area.js"></script>
-
+   <script type="text/javascript" src="dop/area.js"></script>
 </head>
 <body>
 <header>
@@ -61,21 +59,29 @@
         </div>
     </form>
 </div>
-<canvas id="area">No canvas!</canvas>
+<canvas id="area"></canvas>
 <div class="results">
-    <p class="small_header">Results</p>
+
     <%
         ArrayList<ResultData> res = (ArrayList<ResultData>)application.getAttribute("result");
-        for (int i = 0; i < res.size(); i++){
-        out.print("<p>Point ( x = "
+        out.print("<table> <caption class=\"small_header\">Results</caption><tr>"+
+                    "<td>X</td>"+
+                    "<td>Y</td>"+
+                    "<td>R</td>"+
+                    "<td>Area</td>"+
+                    "</tr>"
+        );
+        for (int i = 1; i < res.size(); i++){
+        out.print("<tr><td>"
                 + res.get(i).getX() +
-                ", y = " +
+                "</td><td>" +
                 res.get(i).getY() +
-                ", R = " +
+                "</td><td>" +
                 res.get(i).getR() +
-                "), Area: " +
+                "</td><td>" +
                 res.get(i).getArea() +
-                "</p>");}
+                "</td></tr>");}
+        out.print("</table>");
     %>
 </div>
 
